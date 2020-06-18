@@ -25,8 +25,7 @@ def incoming_twilio():
     currency_code = message[4].upper()
     r = requests.get("https://api.coinbase.com/v2/exchange-rates?currency=BTC")
     if r.status_code == 200:
-        data = r.json()
-        rates = data['data']['rates']
+        rates = r.json()['data']['rates']
         if currency_code in rates:
             unit_rate = rates[currency_code]
             unit_conversion = get_unit_conversion(btc_unit, unit_rate)
